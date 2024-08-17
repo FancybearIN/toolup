@@ -1,18 +1,19 @@
 #!/bin/bash
-# try to be inspire don't copy !!!!
-if [ "$EUID" -ne 0 ]; then
-  echo "Please run as root"
-  exit
-fi
 # Display banner
 if [ "$LOLCAT_INSTALLED" = true ]; then
     figlet "Toolup" | lolcat
-    figlet "Developed by Deepak aka FancybearIN" | lolcat
+    figlet "Developed by Riya,Deepak aka FancybearIN" | lolcat
 else
     echo "------------------------------------"
                 figlet "Toolup" && echo "Developed by Deepak aka FancybearIN"
     echo "------------------------------------"
     
+fi
+
+# try to be inspire don't copy !!!!
+if [ "$EUID" -ne 0 ]; then
+  echo "Please run as root"
+  exit
 fi
 
 # Detect package manager
@@ -100,21 +101,21 @@ command() {
 
 language() {
     pythonbhai() {
-        $PM_INSTALL python python-pip
+        $PM_INSTALL python python-pip 
     }
 
     gobhai() {
         if [ "$PM" == "apt" ]; then
             apt-get purge -y golang
-            wget https://go.dev/dl/go1.20.3.linux-amd64.tar.gz
-            tar -C /usr/local -xzf go1.20.3.linux-amd64.tar.gz
-            mkdir -p ~/.go
-        echo 'export GOROOT=/usr/local/go' >> ~/.bashrc
-        echo 'export GOPATH=~/.go' >> ~/.bashrc
-        echo 'export PATH=$PATH:$GOROOT/bin:$GOPATH/bin' >> ~/.bashrc
-        source ~/.bashrc
-        update-alternatives --install "/usr/bin/go" "go" "/usr/local/go/bin/go" 0
-        update-alternatives --set go /usr/local/go/bin/go
+        #     wget https://go.dev/dl/go1.20.3.linux-amd64.tar.gz
+        #     tar -C /usr/local -xzf go1.20.3.linux-amd64.tar.gz
+        #     mkdir -p ~/.go
+        # echo 'export GOROOT=/usr/local/go' >> ~/.bashrc
+        # echo 'export GOPATH=~/.go' >> ~/.bashrc
+        # echo 'export PATH=$PATH:$GOROOT/bin:$GOPATH/bin' >> ~/.bashrc
+        # source ~/.bashrc
+        # update-alternatives --install "/usr/bin/go" "go" "/usr/local/go/bin/go" 0
+       # update-alternatives --set go /usr/local/go/bin/go
         elif [ "$PM" == "pacman" ]; then
             pacman -Syy go 
             #wget https://go.dev/dl/go1.20.3.linux-amd64.tar.gz
@@ -124,7 +125,7 @@ language() {
 
     javascriptbhai() {
         if [ "$PM" == "apt" ]; then
-            curl -fsSL https://deb.nodesource.com/setup_19.x | bash -
+            curl -fsSL https://deb.nodesource.com/setup_21.x | bash -
             $PM_INSTALL nodejs
         elif [ "$PM" == "pacman" ]; then
             $PM_INSTALL nodejs npm
@@ -133,13 +134,13 @@ language() {
 
     javabhai() {
         if [ "$PM" == "apt" ]; then
-            wget https://download.oracle.com/java/20/latest/jdk-20_linux-x64_bin.deb
-            dpkg -i jdk-20_linux-x64_bin.deb
+            wget https://download.oracle.com/java/20/latest/jdk-23_linux-x64_bin.deb
+            dpkg -i jdk-23_linux-x64_bin.deb
         elif [ "$PM" == "pacman" ]; then
             $PM_INSTALL jdk-openjdk
         fi
-        update-alternatives --install /usr/bin/java java /usr/lib/jvm/jdk-20/bin/java 1
-        update-alternatives --install /usr/bin/javac javac /usr/lib/jvm/jdk-20/bin/javac 1
+        update-alternatives --install /usr/bin/java java /usr/lib/jvm/jdk-23/bin/java 1
+        update-alternatives --install /usr/bin/javac javac /usr/lib/jvm/jdk-23/bin/javac 1
     }
 
     sqlbhai() {
@@ -159,12 +160,13 @@ language() {
 }
 
 gf() {
-    echo 'source $GOPATH/src/github.com/tomnomnom/gf/gf-completion.bash' >> ~/.bashrc
-    mkdir -p ~/.gf
-    cp -r $GOPATH/src/github.com/tomnomnom/gf/examples ~/.gf
-    git clone https://github.com/1ndianl33t/Gf-Patterns
-    mv ~/Gf-Patterns/*.json ~/.gf
-    gf --list
+    echo "you have to mannual"
+    echo "echo 'source $GOPATH/src/github.com/tomnomnom/gf/gf-completion.bash' >> ~/.bashrc"
+    echo "mkdir -p ~/.gf"
+    echo "cp -r $GOPATH/src/github.com/tomnomnom/gf/examples ~/.gf"
+    echo "git clone https://github.com/1ndianl33t/Gf-Patterns"
+    echo "mv ~/Gf-Patterns/*.json ~/.gf"
+    echo "gf --list"
 }
 
 config() {
@@ -203,9 +205,9 @@ done
 language
 chaotic_aur
 blackarch
+ptlib
 projectdiscovery
 github
-ptlib
 command
 gf
 config
